@@ -1,4 +1,6 @@
+import { relations } from 'drizzle-orm';
 import { pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
+import { OrderTable } from './order.schema';
 
 export const UserTable = pgTable('user', {
   id: serial('id').primaryKey(),
@@ -9,3 +11,7 @@ export const UserTable = pgTable('user', {
   createdAt: timestamp('createdAt').defaultNow().notNull(),
   updatedAt: timestamp('updatedAt').defaultNow().notNull(),
 });
+
+export const UserTableRelations = relations(UserTable, ({ many }) => ({
+  order: many(OrderTable),
+}));
