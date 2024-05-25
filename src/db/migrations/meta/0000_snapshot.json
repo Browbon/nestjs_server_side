@@ -1,5 +1,5 @@
 {
-  "id": "1c72c48a-d5ed-4052-9579-a7062dd01a19",
+  "id": "761069bb-ac8d-4cd2-8527-7c8c8df80890",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "6",
   "dialect": "postgresql",
@@ -103,12 +103,6 @@
           "notNull": false,
           "default": "'description'"
         },
-        "category_id": {
-          "name": "category_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
         "createdAt": {
           "name": "createdAt",
           "type": "timestamp",
@@ -125,21 +119,7 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {
-        "product_category_id_category_id_fk": {
-          "name": "product_category_id_category_id_fk",
-          "tableFrom": "product",
-          "tableTo": "category",
-          "columnsFrom": [
-            "category_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
@@ -157,7 +137,7 @@
           "name": "user_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "price": {
           "name": "price",
@@ -305,6 +285,61 @@
           "tableTo": "product",
           "columnsFrom": [
             "product_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.product_category": {
+      "name": "product_category",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "product_id": {
+          "name": "product_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "category_id": {
+          "name": "category_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "product_category_product_id_product_id_fk": {
+          "name": "product_category_product_id_product_id_fk",
+          "tableFrom": "product_category",
+          "tableTo": "product",
+          "columnsFrom": [
+            "product_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "product_category_category_id_category_id_fk": {
+          "name": "product_category_category_id_category_id_fk",
+          "tableFrom": "product_category",
+          "tableTo": "category",
+          "columnsFrom": [
+            "category_id"
           ],
           "columnsTo": [
             "id"
