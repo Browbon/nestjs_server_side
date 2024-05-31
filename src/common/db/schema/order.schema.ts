@@ -1,17 +1,16 @@
-import { integer, pgTable, serial, timestamp } from 'drizzle-orm/pg-core';
+import { integer, pgTable } from 'drizzle-orm/pg-core';
 import { UserTable } from './user.schema';
 import { relations } from 'drizzle-orm';
 import { OrderProductTable } from './order_product.schema';
+import { baseSchema } from './base.schema';
 
 export const OrderTable = pgTable('order', {
-  id: serial('id').primaryKey(),
+  ...baseSchema,
   user_id: integer('user_id')
     // Database level constrains
     .references(() => UserTable.id)
     .notNull(),
   price: integer('price').notNull(),
-  createdAt: timestamp('createdAt').defaultNow().notNull(),
-  updatedAt: timestamp('updatedAt').defaultNow().notNull(),
 });
 
 // Orm level constrains

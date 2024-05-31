@@ -1,10 +1,11 @@
-import { integer, pgTable, serial, timestamp } from 'drizzle-orm/pg-core';
+import { integer, pgTable } from 'drizzle-orm/pg-core';
 import { OrderTable } from './order.schema';
 import { ProductTable } from './product.schema';
 import { relations } from 'drizzle-orm';
+import { baseSchema } from './base.schema';
 
 export const OrderProductTable = pgTable('order_product', {
-  id: serial('id').primaryKey(),
+  ...baseSchema,
   order_id: integer('order_id')
     .references(() => OrderTable.id)
     .notNull(),
@@ -12,8 +13,6 @@ export const OrderProductTable = pgTable('order_product', {
     .references(() => ProductTable.id)
     .notNull(),
   quantity: integer('quantity').notNull(),
-  createdAt: timestamp('createdAt').defaultNow().notNull(),
-  updatedAt: timestamp('updatedAt').defaultNow().notNull(),
 });
 
 export const OrderProductTableRelations = relations(

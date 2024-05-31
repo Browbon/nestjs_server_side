@@ -1,10 +1,11 @@
-import { integer, pgTable, serial } from 'drizzle-orm/pg-core';
+import { integer, pgTable } from 'drizzle-orm/pg-core';
 import { ProductTable } from './product.schema';
 import { CategoryTable } from './category.schema';
 import { relations } from 'drizzle-orm';
+import { baseSchema } from './base.schema';
 
 export const ProductCategoryTable = pgTable('product_category', {
-  id: serial('id').primaryKey(),
+  ...baseSchema,
   product_id: integer('product_id')
     .notNull()
     .references(() => ProductTable.id),
