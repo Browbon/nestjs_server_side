@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { Role } from './Enum/role.enum';
+import { Role } from '../../common/@types/enums/role.enum';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { UserDaoService } from 'src/dao/userDao.service';
+import { UserDaoService } from 'src/module/dao/userDao.service';
 
 @Injectable()
 export class UsersService {

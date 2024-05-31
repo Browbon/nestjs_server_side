@@ -12,7 +12,7 @@ import {
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
-import { Role } from './Enum/role.enum';
+import { Role } from '../../common/@types/enums/role.enum';
 
 @Controller('users')
 export class UsersController {
